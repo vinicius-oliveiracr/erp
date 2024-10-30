@@ -41,7 +41,7 @@ class EmployeesPermission(permissions.BasePermission):
 
     message = "Employee does not have employee management permission"
 
-    def has_permission(self, request, view):
+    def has_permission(self, request, _view):
 
         return check_permission(request.user, request.method, 'employee')
     
@@ -50,7 +50,7 @@ class GroupPermission (permissions.BasePermission):
 
     message = "Employee does not have group management permission"
 
-    def has_permission(self, request, view):
+    def has_permission(self, request, _view):
 
         return check_permission(request.user, request.method, 'group')
     
@@ -59,7 +59,7 @@ class GroupsPermissionsPermission (permissions.BasePermission):
 
     message = "Employee does not have permission management permission"
 
-    def has_permission(self, request, view):
+    def has_permission(self, request, _view):
         
         return check_permission(request.user, request.method, 'permission')
     
@@ -68,6 +68,6 @@ class TaskPermission (permissions.BasePermission):
 
     message = "Employee does not have task management permission"
 
-    def has_permission(self, request, view):
+    def has_permission(self, request, _view):
 
         return check_permission(request.user, request.method, 'task')

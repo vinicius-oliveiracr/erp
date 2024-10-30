@@ -1,14 +1,14 @@
-from rest_framework.views import APIView
+from rest_framework.views import APIView # type: ignore
 
 from accounts.auth import Authentication
 
 from accounts.serializers import UserSerializer
 
-from rest_framework.response import Response
+from rest_framework.response import Response # type: ignore
 
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken # type: ignore
 
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny # type: ignore
 
 from accounts.views.base import Base
 

@@ -1,1 +1,6 @@
+__pycache__
+__init__.py
+migrations
+settings.py
+wsgi.py
 venv

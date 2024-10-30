@@ -2,13 +2,13 @@ from accounts.views.base import Base
 
 from accounts.models import User
 
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated # type: ignore
 
 from accounts.serializers import UserSerializer
 
-from rest_framework.response import Response
+from rest_framework.response import Response # type: ignore
 
-from rest_framework.exceptions import APIException
+from rest_framework.exceptions import APIException # type: ignore
 
 class GetUser(Base):
 
@@ -23,11 +23,11 @@ class GetUser(Base):
 
             if not user:
                 return Response({
-                    "detail": "user not fount",
+                    "detail": "user not found",
                     "code":"user_not_found"
                 }, status=404)
 
-            enterprise = self.get_enterprise_user(user)
+            enterprise = self.get_enterprise_user(user.id)
 
             serializer = UserSerializer(user)
 

@@ -4,7 +4,7 @@ from accounts.views.signup import Signup
 
 from accounts.views.user import GetUser
 
-from django.urls import path
+from django.urls import path # type: ignore
 
 urlpatterns = [
     path('signin', Signin.as_view()),

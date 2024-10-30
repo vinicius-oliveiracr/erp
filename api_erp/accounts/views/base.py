@@ -1,6 +1,6 @@
-from rest_framework.views import APIView
+from rest_framework.views import APIView # type: ignore
 
-from rest_framework.exceptions import APIException
+from rest_framework.exceptions import APIException # type: ignore
 
 from companies.models import Enterprise, Employee
 
@@ -21,9 +21,10 @@ class Base(APIView):
             "permissions": []
         }
 
-        enterprise["is_owner"] = Enterprise.objects.filter(user_id=user_id).exists()
+        is_owner_query  = Enterprise.objects.filter(user_id=user_id)
 
-        if enterprise["is_owner"]:
+        if is_owner_query.exists():
+            enterprise["is_owner"] = True
             return enterprise
         
 

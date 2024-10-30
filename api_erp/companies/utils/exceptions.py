@@ -1,6 +1,6 @@
 from rest_framework.exceptions import APIException
 
-class NotFoundEmployee(APIException):
+class EmployeeNotFound(APIException):
     status_code = 404
     default_detail = 'Employee not found!'
     default_code = 'employee_not_found'

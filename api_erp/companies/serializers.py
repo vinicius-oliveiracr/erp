@@ -158,3 +158,19 @@ class TaskSerializer (serializers.ModelSerializer):
     def get_employee(self, obj):
 
         return EmployeesSerializer(obj.employee).data
+    
+    def update(self, instance, validated_data):
+
+        instance.title = validated_data.get('title', instance.title)
+
+        instance.description = validated_data.get('description', instance.description)
+
+        instance.status_id = validated_data.get('status_id', instance.status_id)
+
+        instance.employee_id = validated_data.get('employee_id', instance.employee_id)
+        
+        instance.due_date = validated_data.get('due_date', instance.due_date)
+        
+        instance.save()
+
+        return instance

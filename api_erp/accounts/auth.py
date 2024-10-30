@@ -1,12 +1,12 @@
-from rest_framework.exceptions import AuthenticationFailed, APIException # type: ignore
+from rest_framework.exceptions import AuthenticationFailed, APIException 
 
 from accounts.models import User
 
 from companies.models import Enterprise, Employee
 
-from django.contrib.auth.hashers import check_password, make_password # type: ignore
+from django.contrib.auth.hashers import check_password, make_password 
 
-from django.contrib.auth import login # type: ignore
+from django.contrib.auth import login 
 
 from accounts.backends import EmailBackend
 

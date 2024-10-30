@@ -1,6 +1,6 @@
-from rest_framework.views import APIView # type: ignore
+from rest_framework.views import APIView
 
-from rest_framework.exceptions import APIException # type: ignore
+from rest_framework.exceptions import APIException
 
 from companies.models import Enterprise, Employee
 
@@ -12,7 +12,7 @@ class Base(APIView):
     def get_enterprise_user(self, user_id):
 
         if user_id is None or not User.objects.filter(id=user_id).exists():
-            print(user_id)
+            
             raise APIException('User does not exist!')
             
         

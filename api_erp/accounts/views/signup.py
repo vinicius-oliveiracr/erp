@@ -17,6 +17,4 @@ class Signup(Base):
 
         serializer = UserSerializer(user)
 
-        print(serializer.data)
-
         return Response({"user": serializer.data})

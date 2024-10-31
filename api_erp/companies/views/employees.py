@@ -1,10 +1,10 @@
-from companies.views import Base
+from companies.views.base import Base
 
 from companies.utils.permissions import EmployeesPermission, Group_Permissions
 
 from companies.models import Employee, Enterprise
 
-from companies.serializers import EmployeeSerializer, EmployeesSerializer
+from companies.serializers import EmployeesSerializer, EmployeeSerializer
 
 from accounts.auth import Authentication
 
@@ -63,7 +63,7 @@ class Employees(Base):
 
 class EmployeeDetail (Base):
 
-    permission_classes = [EmployeesSerializer]
+    permission_classes = [EmployeesPermission]
 
     def get(self, request, employee_id):
 

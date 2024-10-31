@@ -12,7 +12,7 @@ class Base(APIView):
 
         employee = Employee.objects.filter(user_id=user_id).first()
 
-        owner = Enterprise.objects.filter(user_id=employee.user_id).first()
+        owner = Enterprise.objects.filter(user_id=user_id).first()
 
         if employee:
 

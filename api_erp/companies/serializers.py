@@ -33,43 +33,43 @@ class EmployeesSerializer (serializers.ModelSerializer):
 
         return obj.user.email
     
-    class EmployeeSerializer (serializers.ModelSerializer):
+class EmployeeSerializer (serializers.ModelSerializer):
 
-        name = serializers.SerializerMethodField()
-        email = serializers.SerializerMethodField()
-        groups = serializers.SerializerMethodField()
+    name = serializers.SerializerMethodField()
+    email = serializers.SerializerMethodField()
+    groups = serializers.SerializerMethodField()
 
-        class Meta:
-            model = Employee
-            fields = (
-                'id',
-                'name',
-                'email',
-                'groups'
-            )
+    class Meta:
+        model = Employee
+        fields = (
+            'id',
+            'name',
+            'email',
+            'groups'
+        )
 
-        def get_name (self, obj):
+    def get_name (self, obj):
 
-            return obj.user.name
-        
-        def get_email (self, obj):
+        return obj.user.name
+    
+    def get_email (self, obj):
 
-            return obj.user.email
-        
-        def get_groups(self,obj):
+        return obj.user.email
+    
+    def get_groups(self,obj):
 
-            groupsDB = User_Groups.objects.filter(user_id=obj.user.id).all()
+        groupsDB = User_Groups.objects.filter(user_id=obj.user.id).all()
 
-            groups_data = []
+        groups_data = []
 
-            for group in groupsDB:
+        for group in groupsDB:
 
-                groups_data.append({
-                    "id": group.group.id,
-                    "name": group.group.name
-                })
+            groups_data.append({
+                "id": group.group.id,
+                "name": group.group.name
+            })
 
-            return groups_data
+        return groups_data
         
 
 class GroupsSerializer (serializers.ModelSerializer):

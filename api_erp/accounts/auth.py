@@ -74,6 +74,6 @@ class Authentication:
         if account_type == "employee":
             Employee.objects.create(
                 enterprise_id = company_id or created_enterprise.id,
-                user_id = created_user
+                user_id = created_user.id
             )
         return created_user

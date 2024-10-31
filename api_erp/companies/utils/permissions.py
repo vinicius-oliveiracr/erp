@@ -46,7 +46,7 @@ class EmployeesPermission(permissions.BasePermission):
         return check_permission(request.user, request.method, 'employee')
     
 
-class GroupPermission (permissions.BasePermission):
+class GroupsPermission (permissions.BasePermission):
 
     message = "Employee does not have group management permission"
 

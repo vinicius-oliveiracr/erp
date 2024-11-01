@@ -36,8 +36,8 @@ class Tasks(Base):
         description = request.data.get('description')
         status_id = request.data.get('status_id')
         due_date = request.data.get('due_date')
+        
         employee = self.get_employee(employee_id, request.user.id)
-
         _status = self.get_status(status_id)
 
         if not title or len(title) > 255:
@@ -54,20 +54,20 @@ class Tasks(Base):
 
                 raise APIException('Date must have the pattern: d/m/Y H:M', "invalid_date")
             
-            task = Task.objects.create(
-                title=title,
-                description=description,
-                due_date=due_date,
-                employee_id=employee_id,
-                enterprise_id = employee.enterprise_id,
-                status_id = status_id
-            )
+        task = Task.objects.create(
+            title=title,
+            description=description,
+            due_date=due_date,
+            employee_id=employee_id,
+            enterprise_id = employee.enterprise_id,
+            status_id = status_id
+        )
 
-            serializer = TaskSerializer(task)
+        serializer = TaskSerializer(task)
 
-            return Response({
-                "task": serializer.data
-            })
+        return Response({
+            "task": serializer.data
+        })
         
 
 class TaskDetail(Base):
@@ -97,11 +97,21 @@ class TaskDetail(Base):
         employee_id = request.data.get('employee_id', task.employee.id)
         description = request.data.get('description', task.description)
         status_id = request.data.get('status_id', task.status.id)
-        due_date = request.data.get('due_date', task.due_time)
+        due_date = request.data.get('due_date', task.due_date)
 
         self.get_status(status_id)
 
         self.get_employee(employee_id, request.user.id)
+
+        if due_date and due_date != task.due_date:
+
+            try:
+
+                due_date = datetime.datetime.strptime(due_date, '%d/%m/%Y %H:%M')
+
+            except ValueError:
+
+                raise APIException('Date must have the pattern: d/m/Y H:M', "invalid_date")
 
         data = {
             "title": title,
